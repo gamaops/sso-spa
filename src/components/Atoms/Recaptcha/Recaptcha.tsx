@@ -1,8 +1,12 @@
 import React from 'react';
 
-declare var grecaptcha: any;
+export interface RecaptchaProperties { 
+  id: string, 
+  sitekey: string, 
+  onChange: (recaptcha_response: string) => any 
+};
 
-export default class Recaptcha extends React.Component<{ id: string, sitekey: string, onChange: (recaptcha_response: string) => any }> {  
+export default class Recaptcha extends React.Component<RecaptchaProperties> {  
 	public recaptcha: any;
 
   constructor(props: any) {
@@ -20,15 +24,13 @@ export default class Recaptcha extends React.Component<{ id: string, sitekey: st
   }
 
   getValue() {
-    return grecaptcha.getResponse(this.recaptcha);
+    return window.grecaptcha.getResponse(this.recaptcha);
   }
 
   loadRecaptcha() {
 		const callback = this.callback;
 		const { id, sitekey } = this.props;
-    this.recaptcha = grecaptcha.render(id, { sitekey, callback });
-
-		grecaptcha.execute();
+    this.recaptcha = window.grecaptcha.render(id, { sitekey, callback });
   }
 
   callback() {

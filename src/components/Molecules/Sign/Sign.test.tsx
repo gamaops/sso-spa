@@ -1,9 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Sign from 'src/components/Molecules/Sign';
+import { ReactWrapper, mount } from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Sign onSubmit={()=> {}} />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+import Sign, { SignProperties } from 'src/components/Molecules/Sign';
+import { Credentials } from 'src/models/credentials';
+
+describe(
+  'Sign',
+  () => {
+    let wrapper: ReactWrapper<SignProperties, Credentials, Sign>;
+
+    beforeEach(
+      () => {
+        window.grecaptcha = { execute() { }, render() { } } as any;
+        wrapper = mount(
+          <div>
+            <Sign />
+          </div>
+        );
+      },
+    )
+
+
+    it(
+      'renders without crashing',
+      () => {
+        expect(wrapper.exists()).toBeTruthy();
+      }
+    );
+
+  },
+);

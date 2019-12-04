@@ -1,81 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
-@import 'reset';
-@import 'animations';
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
+@import "reset";
+@import "animations";
+@import "fonts";
+@import "forms";
+@import "buttons";
 
-form {
-  display: flex;
-  flex-wrap: wrap;
+header,
+ul {
+	margin-bottom: 25px;
+}
 
-  & > div {
-    position: relative;
-    flex-basis: 100%;
+.title {
+	margin-bottom: 10px;
+}
 
-    input {
-      background-color: transparent;
-      border: solid 1.5px #eee;
-      border-radius: 6px;
-      padding: 0 16px;
-      transition: border ease-in-out 0.4s;
-      height: 40px;
-
-      &.touched:invalid {
-        border: solid 1.5px #f66;
-        animation: shake 0.4s ease-in-out;
-
-        & ~ label {
-          color: #f66;
-        }
-
-        &.dirty {
-          & ~ label {
-            top: 0px;
-            left: 8px;
-            color: #fff;
-            background-color: #f66;
-          }
-        }
-
-        &:focus {
-          & ~ label {
-            top: 0px;
-            left: 8px;
-            color: #fff;
-            background-color: #f66;
-          }
-        }
-      }
-
-      &:valid {
-        & ~ label {
-          top: 0px;
-          left: 8px;
-          color: #999;
-          background-color: #eee;
-        }
-      }
-
-      &:focus {
-        border: solid 2px #2196F3;
-        & ~ label {
-          top: 0px;
-          left: 8px;
-          color: #212121;
-          background-color: #2196F3;
-        }
-      }
-    }
-
-    label {
-      transition: all ease-in-out 0.4s;
-      background-color: transparent;
-      transform: translateY(-50%);
-      position: absolute;
-      top: 50%;
-
-      border-radius: 3px;
-      color: #999;
-      left: 16px;
-      padding: 3px 6px;
-    }
-  }
+.container {
+	max-width: 720px;
 }

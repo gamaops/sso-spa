@@ -1,4 +1,5 @@
 import { Credentials } from 'src/models/credentials';
+import { Accord } from 'src/models/accord';
 
 export default class Api {
 	private static readonly baseUrl = '/sign-in';
@@ -11,8 +12,11 @@ export default class Api {
 		return fetch(url, { method: 'POST', body });
 	}
 
-	public static authorize() {
-		
+	public static authorize(accord: Accord) {
+		const url = `${this.baseUrl}/authorize`;
+		const body = JSON.stringify(accord);
+
+		return fetch(url, { method: 'POST', body });
 	}
 
 	public static activate() {

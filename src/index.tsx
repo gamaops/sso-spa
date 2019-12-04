@@ -9,4 +9,3 @@ const rootElement = document.getElementById('app');
 
 rootElement && rootElement.hasChildNodes() ? 
 	hydrate(<App />, rootElement) : render(<App />, rootElement);
-

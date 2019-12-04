@@ -1,9 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Choose from 'src/components/Molecules/Choose';
+import { ReactWrapper, mount } from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Choose />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+import Choose, { ChooseProperties } from 'src/components/Molecules/Choose';
+
+describe(
+  'Choose',
+  () => {
+    let wrapper: ReactWrapper<ChooseProperties, {}, Choose>;
+    
+    beforeEach(
+      () => {
+        wrapper = mount(
+          <div>
+            <Choose  />
+          </div>
+        );
+      },
+    )
+
+
+    it(
+      'renders without crashing',
+      () => {
+        expect(wrapper.exists()).toBeTruthy();
+      }
+    );
+
+  },
+);

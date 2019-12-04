@@ -1,12 +1,23 @@
 import React from 'react';
 
-export default class IdentifierInput extends React.Component<{ value: string, onChange: (value: string) => any }, { type: 'email' | 'tel' }> {
+export interface IdentifierInputProperties {
+	onChange: (value: string) => any,
+	value: string, 
+};
 
-	constructor(props: any) {
+export interface IdentifierInputState {
+	type: 'email' | 'tel',
+};
+
+export default class IdentifierInput extends React.Component<IdentifierInputProperties, IdentifierInputState> {
+	public input: React.RefObject<HTMLInputElement>;
+
+	constructor(props: IdentifierInputProperties) {
 		super(props);
-		this.changeInput = this.changeInput.bind(this);
-		this.type = this.type.bind(this);
 		this.state = { type: 'email' };
+		this.type = this.type.bind(this);
+		this.changeInput = this.changeInput.bind(this);
+		this.input = React.createRef<HTMLInputElement>();
 	}
 
 	public changeInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -50,8 +61,10 @@ export default class IdentifierInput extends React.Component<{ value: string, on
 					id="identifier"
 					name="identifier"
 					autoComplete="on"
+					ref={this.input}
 					type={this.state.type}
 					onChange={this.changeInput} 
+					value={this.props.value || ''}
 					onFocus={e => e.currentTarget.classList.add('touched') } />
 				<label htmlFor="identifier">Email ou Celular</label>
 			</div>

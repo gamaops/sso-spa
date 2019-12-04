@@ -1,6 +1,11 @@
 import React from 'react';
 
-export default class PasswordInput extends React.Component<{ value: string, onChange: (value: string) => any }> {
+export interface PasswordInputProperties { 
+	onChange: (value: string) => any;
+	value: string, 
+};
+
+export default class PasswordInput extends React.Component<PasswordInputProperties> {
 
 	constructor(props: any) {
 		super(props);
@@ -15,6 +20,7 @@ export default class PasswordInput extends React.Component<{ value: string, onCh
 	}
 
 	public validade(input: HTMLInputElement) {
+		input.classList[input.value.length ? 'add': 'remove']('dirty');
 		switch (true) {
 			case input.value.length === 0:
 				input.setCustomValidity('Preencha sua senha');
@@ -35,9 +41,9 @@ export default class PasswordInput extends React.Component<{ value: string, onCh
 					type="password"
 					autoComplete="on"
 					onChange={this.changeInput} 
+					value={this.props.value || ''}
 					onFocus={e => e.currentTarget.classList.add('touched') }  />
 				<label htmlFor="password">Senha</label>
-				{this.props.children}
 			</div>
 		);
 	}

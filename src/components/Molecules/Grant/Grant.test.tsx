@@ -1,18 +1,19 @@
 import React from 'react';
 import { ReactWrapper, mount } from 'enzyme';
 
-import App from 'src/App';
+import Grant, { GrantProperties } from 'src/components/Molecules/Grant';
 
 describe(
-  'App',
+  'Grant',
   () => {
-    let wrapper: ReactWrapper<App>;
+    let wrapper: ReactWrapper<GrantProperties, {}, Grant>;
 
     beforeEach(
       () => {
+        window.grecaptcha = { execute() {}, render() {} } as any;
         wrapper = mount(
           <div>
-            <App />
+            <Grant  />
           </div>
         );
       },
